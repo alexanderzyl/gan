@@ -1,0 +1,4 @@
+tensorflow
+Theano
+pydot
+graphviz
