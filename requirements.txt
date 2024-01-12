@@ -1,5 +1,7 @@
 numpy
 tensorflow
+keras
 Theano
+matplotlib
 pydot
 graphviz
