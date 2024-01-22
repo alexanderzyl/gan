@@ -35,7 +35,7 @@ class DcGan(ABC):
         pass
 
     @abstractmethod
-    def generate_fake_samples(self, latent_dim: int, n_samples: int) -> Tuple[np.array, np.array]:
+    def generate_fake_samples(self, n_samples: int) -> Tuple[np.array, np.array]:
         pass
 
     def epoch_end_event(self, epoch_number, data_dict):
@@ -50,7 +50,7 @@ class DcGan(ABC):
         for epoch_number in range(n_epochs):
             for batch_number in range(bat_per_epo):
                 X_real, y_real = self.generate_real_samples(dataset, half_batch)
-                X_fake, y_fake = self.generate_fake_samples(self.latent_dim, half_batch)
+                X_fake, y_fake = self.generate_fake_samples(half_batch)
                 X, y = np.vstack((X_real, X_fake)), np.vstack((y_real, y_fake))
                 d_loss, _ = self.discriminator.train_on_batch(X, y)
                 X_gan = self.generate_latent_points(self.latent_dim, n_batch)
