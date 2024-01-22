@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 class DemoMnistGan(MnistGan):
     def __init__(self):
         super().__init__()
-        self.generator.load_weights('../trained_models/generator_90.keras')
-        self.discriminator.load_weights('../trained_models/discriminator_90.keras')
+        self.generator.load_weights('../trained_models/generator_190.keras')
+        self.discriminator.load_weights('../trained_models/discriminator_190.keras')
         self.create_gan()
 
     def generate_latent_points(self, latent_dim, n_samples):
@@ -16,7 +16,7 @@ class DemoMnistGan(MnistGan):
         # for i in range(n_samples):
         #     latents[i, :] = i * 0.1
 
-        latents[:, 13:20] = 1.5
+        # latents[:, 13:20] = 1.5
 
         return latents
 

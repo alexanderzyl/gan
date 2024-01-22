@@ -6,7 +6,7 @@ from keras.src.initializers.initializers import RandomNormal
 from keras.src.layers import Conv2D, LeakyReLU, Dropout, Flatten, Dense, Reshape, Conv2DTranspose, BatchNormalization
 from keras.src.optimizers.adam import Adam
 
-from generic import DcGan
+from dcgan.generic import DcGan
 
 
 class MnistGan(DcGan):
