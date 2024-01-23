@@ -4,7 +4,7 @@ import numpy as np
 from keras import Model, Sequential
 from keras.layers import Conv2D, LeakyReLU, Dropout, Flatten, Dense, Reshape, Conv2DTranspose, BatchNormalization
 from keras.optimizers import Adam
-from keras.src.initializers.initializers import RandomNormal
+from keras.src.initializers.initializers import RandomNormal, RandomUniform
 
 from dcgan.generic import DcGan
 
@@ -38,7 +38,8 @@ class Cifar10Gan(DcGan):
 
     def create_generator(self) -> Model:
         n_nodes = 256 * 4 * 4
-        init = RandomNormal(stddev=0.02)
+        # init = RandomNormal(stddev=0.02)
+        init = RandomUniform(minval=-0.05, maxval=0.05)
         model = Sequential()
         model.add(Dense(n_nodes, input_dim=self.latent_dim, kernel_initializer=init))
         model.add(LeakyReLU(alpha=0.2))
