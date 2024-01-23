@@ -46,15 +46,15 @@ class Cifar10Gan(DcGan):
         model.add(Reshape((4, 4, 256)))
 
         model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        model.add(BatchNormalization())
+        # model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
         model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        model.add(BatchNormalization())
+        # model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
         model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        model.add(BatchNormalization())
+        # model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
         # output layer
