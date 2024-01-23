@@ -65,13 +65,3 @@ class MnistGan(DcGan):
         # use tanh
         model.add(Conv2D(1, (7, 7), activation='tanh', padding='same'))
         return model
-
-    # Create GAN model
-    def create_gan(self) -> Model:
-        self.discriminator.trainable = False
-        model = Sequential()
-        model.add(self.generator)
-        model.add(self.discriminator)
-        opt = Adam(learning_rate=0.0002, beta_1=0.5)
-        model.compile(loss='binary_crossentropy', optimizer=opt)
-        return model

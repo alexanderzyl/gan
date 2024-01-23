@@ -1,7 +1,8 @@
 from typing import Tuple
 
 import numpy as np
-from keras import Model
+from keras import Model, Sequential
+from keras.optimizers import Adam
 
 from abc import ABC, abstractmethod
 
@@ -22,9 +23,16 @@ class DcGan(ABC):
     def create_generator(self) -> Model:
         pass
 
-    @abstractmethod
+    # Create GAN model
     def create_gan(self) -> Model:
-        pass
+        self.discriminator.trainable = False
+        model = Sequential()
+        model.add(self.generator)
+        model.add(self.discriminator)
+        opt = Adam(learning_rate=0.0002, beta_1=0.5)
+        model.compile(loss='binary_crossentropy', optimizer=opt)
+        return model
+
 
     @abstractmethod
     def generate_real_samples(self, dataset, n_samples):
