@@ -38,23 +38,23 @@ class Cifar10Gan(DcGan):
 
     def create_generator(self) -> Model:
         n_nodes = 256 * 4 * 4
-        # init = RandomNormal(stddev=0.02)
-        init = RandomUniform(minval=-0.05, maxval=0.05)
+        init = RandomNormal(stddev=0.02)
+        # init = RandomUniform(minval=-0.05, maxval=0.05)
         model = Sequential()
         model.add(Dense(n_nodes, input_dim=self.latent_dim, kernel_initializer=init))
         model.add(LeakyReLU(alpha=0.2))
         model.add(Reshape((4, 4, 256)))
 
-        model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        # model.add(BatchNormalization())
+        model.add(Conv2DTranspose(128, (5, 5), strides=(2, 2), padding='same'))
+        model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
-        model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        # model.add(BatchNormalization())
+        model.add(Conv2DTranspose(128, (5, 5), strides=(2, 2), padding='same'))
+        model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
-        model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
-        # model.add(BatchNormalization())
+        model.add(Conv2DTranspose(128, (5, 5), strides=(2, 2), padding='same'))
+        model.add(BatchNormalization())
         model.add(LeakyReLU(alpha=0.2))
 
         # output layer
