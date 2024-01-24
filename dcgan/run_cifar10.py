@@ -53,8 +53,8 @@ def tb_epoch_end(gan, epoch_number, data_dict):
 # Main function
 if __name__ == '__main__':
     dcgan = Cifar10Gan()
-    dcgan.generator.summary()
-    # dcgan.on_epoch_end.append(tb_epoch_end)
-    # # tb_epoch_end(dcgan, 0, {})
-    # # tb_epoch_end(dcgan, 10, {})
-    # dcgan.train(trainX)
+    # dcgan.generator.summary()
+    dcgan.on_epoch_end.append(tb_epoch_end)
+    # tb_epoch_end(dcgan, 0, {})
+    # tb_epoch_end(dcgan, 10, {})
+    dcgan.train(trainX)
